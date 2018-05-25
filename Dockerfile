@@ -28,47 +28,19 @@ RUN apt-get update && \
 	apt-get install -y --no-install-recommends \
 	git  \
 	g++  \
+	graphviz \
 	make && \
 	rm -rf /var/lib/apt/lists/* 
 
 USER $NB_USER
 
-RUN conda_libs='setuptools \
-numpy \
-scikit-image \
-scikit-learn \
-scipy \
-statsmodels \
-matplotlib \
-seaborn \
-nltk \
-sqlite \
-bokeh \
-pandas \
-plotly \
-scrapy \
-beautifulsoup4 \
-dill \
-ez_setup \
-multiprocess \
-sqlparse \
-ipython-sql \
-sqlalchemy \
-selenium \
-joblib \
-unidecode \
-geopandas \
-gensim \
-textblob \
-pydotplus \
-pip ' && \
-conda update -n base conda && \
-conda install --yes $conda_libs
+COPY conda_libs.txt /tmp/
+RUN conda update -n base conda && \
+conda install --yes --file /tmp/conda_libs.txt
 
-RUN pip_libs='graphviz \
-pyldavis ' \
-&& pip install --upgrade 'pip' \
-&& pip install $pip_libs \
+COPY pip_libs.txt /tmp/
+RUN pip install --upgrade 'pip' \
+&& pip install -r /tmp/pip_libs.txt \
 && pip install --quiet 'git+https://github.com/esafak/mca'
 
 WORKDIR '/usr/local/lib'
@@ -78,9 +50,10 @@ RUN git clone --recursive https://github.com/dmlc/xgboost && \
 cd xgboost; make -j4 
 
 USER $NB_USER
-ENV PYTHONPATH=/usr/local/lib/xgboost/python-package
-
+ENV PATH ${CONDA_DIR}:${PATH}:/usr/local/lib/xgboost/python-package
 
 WORKDIR $HOME
 
 CMD ["start-notebook.sh", "--NotebookApp.token=''", "--allow-root"]
+
+	
