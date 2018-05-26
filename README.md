@@ -1,8 +1,7 @@
-# Digital_Data
+# Digital Data
 
 ## Elementos para la construcción de la imagen para los cursos de Data en DH.
 
------
 
 Librerías disponibles
 -----

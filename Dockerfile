@@ -1,7 +1,5 @@
 FROM jupyter/base-notebook
 
-ENV http_proxy=http://proxy.uba.ar:8080/
-
 LABEL maintainer = "Data Science <datascience@digitalhouse.com>"
 
 ENV NB_USER DS-DH-2018
