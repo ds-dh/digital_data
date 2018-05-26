@@ -1,7 +1,11 @@
-# digital_data
+# Digital_Data
 
-Dockerfile para la construcción de contenedor de los cursos de Data en DH.
+## Elementos para la construcción de la imagen para los cursos de Data en DH.
 
+-----
+
+Librerías disponibles
+-----
 
 | Name | Version |
 |------------ | -------------|
