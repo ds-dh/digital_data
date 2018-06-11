@@ -36,10 +36,10 @@ RUN conda update -n base conda \
 
 #&&  conda install --yes --file conda_libs.txt
 
-#COPY pip_libs.txt /tmp/
+COPY pip_libs.txt /tmp/
 
-#RUN pip install --upgrade 'pip' \
-#&&  pip install -r /tmp/pip_libs.txt \
+RUN pip install --upgrade 'pip' \
+&&  pip install -r /tmp/pip_libs.txt \
 #&&  pip install --quiet 'git+https://github.com/esafak/mca'
 
 WORKDIR '/usr/local/lib'

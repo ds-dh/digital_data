@@ -1,4 +1,2 @@
-graphviz 
-pyldavis 
-pyflux 
-imblearn
+tensorflow
+keras
